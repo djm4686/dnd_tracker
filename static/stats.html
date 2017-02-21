@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block main %}
+Stats for {{ character.name }}
+<form action="/characters/{{ character.id }}/save" method="POST">
+    <input type="hidden" value="{{ stats | length }}" name="total_stats">
+{% for stat in stats %}
+	{{ stat.name }} :: <input value="{{ stat.value }}" name="{{ stat.id }}">
+	<br />
+{% endfor %}
+<input type="submit" value="save">
+</form>
+
+<br />
+<br />
+Add another stat:
+<br />
+<form action="/stats/types" method="POST">
+	<input name="stat_name" placeholder="Name of new stat">
+	<input type="submit" vlaue="Submit">
+</form>
+{% endblock %}
